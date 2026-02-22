@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
 import style from "./App.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function flatten(text: string) {
   return text.replace(/\r?\n+/g, " ").replace(/[ \t]{2,}/g, " ").trim();
@@ -17,42 +15,34 @@ export default function App() {
 
     const pasted = e.clipboardData.getData("text");
     if (!pasted.trim()) {
-      toast.error("Nothing to convert (clipboard is empty).");
       return;
     }
 
     const out = flatten(pasted);
 
     if (!out) {
-      toast.error("Conversion failed: result is empty.");
       return;
     }
 
     setOutput(out);
     setInput("");
-    toast.success("Converted successfully.");
 
     requestAnimationFrame(() => inputRef.current?.focus());
   };
 
   const copyOutput = async () => {
     if (!output) {
-      toast.error("Nothing to copy.");
       return;
     }
 
     try {
       await navigator.clipboard.writeText(output);
-      toast.success("Copied to clipboard.");
     } catch {
-      toast.error("Copy failed (browser blocked clipboard access).");
     }
   };
 
   return (
     <div className={style.container}>
-      <ToastContainer position="top-right" autoClose={1800} newestOnTop />
-
       <h1>Flatten dictionary paste</h1>
       <p>
         Paste text with line breaks — get one line instantly.
@@ -80,7 +70,6 @@ export default function App() {
               onClick={() => {
                 setInput("");
                 requestAnimationFrame(() => inputRef.current?.focus());
-                toast.info("Input cleared.");
               }}
               disabled={!input}
             >
@@ -106,7 +95,6 @@ export default function App() {
             <button
               onClick={() => {
                 setOutput("");
-                toast.info("Output cleared.");
               }}
               disabled={!output}
               className={style.button}
