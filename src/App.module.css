@@ -12,7 +12,8 @@
   min-height: 100vh;
   width: 100%;
   padding: 20px;
-  background-color: lightskyblue;
+  background-color: rgb(56, 56, 56);
+  color: white;
 }
 
 .inputsContainer {
@@ -45,7 +46,7 @@ textarea {
   padding: 16px;
   width: 100%;
   min-height: 280px;
-  outline: none;
+  outline: 1px solid white;
   font-size: 14px;
 }
 
@@ -64,6 +65,7 @@ textarea {
 .button {
   position: relative;
   overflow: hidden;
+  color: white;
   flex: 1;
   min-width: 120px;
   height: 44px;
@@ -72,7 +74,7 @@ textarea {
   background-color: transparent;
   cursor: pointer;
   border: none;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  outline: 1px solid white;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
